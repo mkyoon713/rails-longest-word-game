@@ -1,0 +1,21 @@
+<h1>Result</h1>
+
+<% if (@word_array - @array) != [] %>
+<p>Sorry but <%= "#{@word}" %> cannot be built out of <%= "#{@letters}" %></p>
+<% elsif ((@word_array - @array) == []) && (@data["found"] == false) %>
+<p>Sorry but <%= "#{@word}" %> does not seem to be a valid English word</p>
+<% else %>
+<p><strong>Congratulations!</strong> <%= "#{@word}" %> is a valid English word!</p>
+<h3>-----------------------------------------------------------</h3>
+<p>You have scored <%= "#{@score}" %> points this round<p>
+<p>Your total score for all rounds is <%= session[:score] %> points<p>
+<% end %>
+<h3>-----------------------------------------------------------</h3>
+<%= link_to 'Play again', new_path %>
+<br>
+<br>
+<form action="/reset" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="submit" value="Reset Score">
+</form>
+
